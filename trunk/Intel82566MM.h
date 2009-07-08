@@ -57,7 +57,12 @@ public:
 	virtual void stop(IOService * provider);
 	virtual bool init(OSDictionary *properties);
 	virtual void free();
-        
+
+	// --------------------------------------------------
+	// Power Management Support
+	// --------------------------------------------------
+	virtual IOReturn registerWithPolicyMaker(IOService* policyMaker);
+                 
 	// --------------------------------------------------
 	// IONetworkController methods.
 	// --------------------------------------------------
