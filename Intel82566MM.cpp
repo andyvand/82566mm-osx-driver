@@ -897,7 +897,7 @@ IOReturn Intel82566MM::selectMedium(const IONetworkMedium * medium)
 		adapter.hw.mac.ops.get_link_up_info(&adapter.hw,
 						    &adapter.link_speed,
 						    &adapter.link_duplex);
-		switch(adapter.link_speed == SPEED_1000) {
+		switch(adapter.link_speed) {
 		case SPEED_1000:
 			medium = mediumTable[MEDIUM_INDEX_1000FD];
 			break;
@@ -1930,3 +1930,12 @@ bool Intel82566MM::e1000_tx_csum(mbuf_t skb)
 	return false;
 }
 
+IOReturn Intel82566MM::registerWithPolicyMaker ( IOService * policyMaker )
+{
+	static IOPMPowerState powerStateArray[ 2 ] = {
+		{ 1,0,0,0,0,0,0,0,0,0,0,0 },
+		{ 1,kIOPMDeviceUsable,kIOPMPowerOn,kIOPMPowerOn,0,0,0,0,0,0,0,0 }
+	};
+        
+	return policyMaker->registerPowerDriver( this, powerStateArray, 2 );
+}
