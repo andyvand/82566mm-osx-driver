@@ -1,7 +1,7 @@
-CC = /Developer/usr/bin/gcc-4.0 
-CXX = /Developer/usr/bin/g++-4.0 
-SYSROOT = /Developer/SDKs/MacOSX10.5.sdk
-ARCHFLAGS = -arch i386 -isysroot ${SYSROOT} -mmacosx-version-min=10.5
+CC = /Developer/usr/bin/gcc 
+CXX = /Developer/usr/bin/g++ 
+SYSROOT = /Developer/SDKs/MacOSX10.7.sdk
+ARCHFLAGS = -arch x86_64 -isysroot ${SYSROOT} -mmacosx-version-min=10.7 -Xlinker -kext
 ROOTDIR = `pwd`
 
 CXXFLAGS = -x c++ ${ARCHFLAGS} -fmessage-length=0 -pipe -nostdinc -fno-builtin \
@@ -11,7 +11,7 @@ CXXFLAGS = -x c++ ${ARCHFLAGS} -fmessage-length=0 -pipe -nostdinc -fno-builtin \
 	-Wunused-variable -DKERNEL -DKERNEL_PRIVATE -DDRIVER_PRIVATE -DAPPLE \
 	-DNeXT -fapple-kext -gdwarf-2 \
 	-I/System/Library/Frameworks/Kernel.framework/PrivateHeaders \
-        -I/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Kernel.framework/Headers \
+        -I/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Kernel.framework/Headers \
 	-I.
 
 CFLAGS = -x c ${ARCHFLAGS} -fmessage-length=0 -pipe -nostdinc -std=c99 -fno-builtin \
@@ -19,7 +19,7 @@ CFLAGS = -x c ${ARCHFLAGS} -fmessage-length=0 -pipe -nostdinc -std=c99 -fno-buil
 	-mkernel -finline -fno-keep-inline-functions -Wreturn-type -Wunused-variable \
 	-DKERNEL -DKERNEL_PRIVATE -DDRIVER_PRIVATE -DAPPLE -DNeXT -gdwarf-2 \
 	-I/System/Library/Frameworks/Kernel.framework/PrivateHeaders \
-        -I/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Kernel.framework/Headers \
+        -I/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Kernel.framework/Headers \
 	-I.
 
 CXXLDFLAGS = -lcpp_kext -static -nostdlib -r -lkmodc++ 
