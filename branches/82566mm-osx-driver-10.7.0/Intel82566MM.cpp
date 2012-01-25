@@ -330,6 +330,8 @@ bool Intel82566MM::start(IOService * provider)
 	e_debug("Intel82566MM::start(IOService * provider)\n");
 	
 	UInt16 reg16;
+    IOWorkLoop * myWorkLoop = NULL;
+    
 	struct e1000_info* ei = NULL;
 	if (super::start(provider) == false) {
 		e_debug("supper::start failed.\n");
@@ -482,7 +484,7 @@ bool Intel82566MM::start(IOService * provider)
 	
 	// Get a handle to our superclass' workloop.
         //
-        IOWorkLoop * myWorkLoop = (IOWorkLoop *) getWorkLoop();
+        myWorkLoop = (IOWorkLoop *) getWorkLoop();
         if (!myWorkLoop) {
 		e_debug(" myWorkLoop is NULL.\n");
 		goto FAILED_OPENED;
